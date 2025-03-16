@@ -10,6 +10,7 @@ export class DataIiegController {
     return this.dataIiegService.fetchDataAndStore();
   }
   
+  //Metodo para hacer el filtro
   @Get('filter')
   async filterData(
     @Query('anioInicio') anioInicio: number,
