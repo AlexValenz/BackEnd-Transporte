@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,12 +6,16 @@ import { Repository, Between } from 'typeorm'; // Importar Between
 import { DataIIEG } from './data-iieg-entity';
 
 @Injectable()
-export class DataIiegService {
+export class DataIiegService implements OnModuleInit{
   constructor(
     private readonly httpService: HttpService,
     @InjectRepository(DataIIEG)
     private readonly dataIiegRepository: Repository<DataIIEG>,
   ) {}
+
+  async onModuleInit() {
+      await this.fetchDataAndStore();
+  }
 
   async fetchDataAndStore() {
     const url = 'http://apiiieg.jalisco.gob.mx/api/etup';
