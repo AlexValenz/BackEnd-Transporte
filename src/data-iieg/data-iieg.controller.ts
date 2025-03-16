@@ -1,15 +1,16 @@
 import { Controller, Get, Post, Query } from '@nestjs/common';
 import { DataIiegService } from './data-iieg.service';
+import { get } from 'http';
 
 @Controller('data-iieg')
 export class DataIiegController {
-  constructor(private readonly dataIiegService: DataIiegService) {}
+  constructor(private readonly dataIiegService: DataIiegService) { }
 
   @Post('fetch')
   async fetchData() {
     return this.dataIiegService.fetchDataAndStore();
   }
-  
+
   //Metodo para hacer el filtro
   @Get('filter')
   async filterData(

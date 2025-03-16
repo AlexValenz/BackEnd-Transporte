@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataIiegModule } from './data-iieg/data-iieg.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DataIiegModule } from './data-iieg/data-iieg.module';
       synchronize: true,
     }),
     DataIiegModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
