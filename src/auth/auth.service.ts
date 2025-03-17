@@ -11,6 +11,7 @@ export class AuthService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+ //
   async register(username: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = this.userRepository.create({ username, password: hashedPassword });
